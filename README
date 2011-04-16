@@ -1,0 +1,11 @@
+Url Shortener XMPP chat bot running on Google App Engine
+
+Instructions:
+1. Sign up for an account at http://bit.ly unless you want to use another URL shortening service.
+2. Fill in the appropriate fields in main.py (it takes a little while for your API KEY to be valid if you just signed up).
+3. Fill in your application name in app.yaml.
+3. Make changes as you see fit in main.html.
+
+See It Live:
+Mainpage: http://my-xmpp.appspot.com
+Bot: my-xmpp@appspot.com
