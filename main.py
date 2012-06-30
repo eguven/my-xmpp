@@ -38,9 +38,14 @@ class ChatHandler(webapp.RequestHandler):
     message.reply('\n'+r) # replied
     return
 
+class UpHandler(webapp.RequestHandler):
+    def get(self):
+        return 42
+
 def query_bitly(longUrl, user):
   l = urllib.quote(longUrl,'')
-  if longUrl[:7].lower() != 'http://' and urllib.unquote(longUrl)[:7].lower() != 'http://':
+  if (longUrl[:7].lower() != 'http://' and urllib.unquote(longUrl)[:7].lower() != 'http://' and
+      longUrl[:8].lower() != 'https://' and urllib.unquote(longUrl)[:8].lower() != 'https://'):
     l = urllib.quote('http://'+longUrl,'')
 
   result = urlfetch.fetch(JMP_URL+l)
@@ -62,6 +67,7 @@ def query_bitly(longUrl, user):
 def main():
     application = webapp.WSGIApplication([('/_ah/xmpp/message/chat/', ChatHandler),
                                           ('/_ah/xmpp/subscription/subscribe/', SubscribeHandler),
+                                          ('/up', UpHandler),
                                           ('/', MainHandler)],
                                          debug=_DEBUG)
     util.run_wsgi_app(application)
